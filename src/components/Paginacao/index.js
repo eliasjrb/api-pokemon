@@ -1,5 +1,7 @@
+import { FaAnglesRight, FaAngleRight, FaAnglesLeft, FaAngleLeft } from "react-icons/fa6";
+
 export default function Paginacao({ paginacao }) {
-    const totalDePaginas = Math.ceil(paginacao.totalDeItens / 9)
+    const totalDePaginas = Math.ceil(paginacao.totalDeItens / paginacao.qtdPorPagina)
     const paginaAtual = paginacao.paginaAtual
     const Primeiros5 = paginaAtual >= 1 && paginaAtual < 4;
     const ultimos5 = totalDePaginas - paginaAtual < 4;
@@ -32,12 +34,12 @@ export default function Paginacao({ paginacao }) {
                         <ul class="flex space-x-2">
                             <li className={`${classPaginaLink} ${!(paginaAtual > 1 && totalDePaginas > 1) ? classDisable : classPadrao}`}>
                                 <a className={linkItem} href="/pokemons/1" aria-label="Primeira">
-                                    <i class="fa-solid fa-angles-left"></i>
+                                    <FaAnglesLeft size={20} />
                                 </a>
                             </li>
                             <li className={`${classPaginaLink} ${!(paginaAtual > 1 && totalDePaginas > 1) ? classDisable : classPadrao}`}>
                                 <a className={linkItem} href={`/pokemons/${paginaAtual - 1}`}>
-                                    <i class="fa-solid fa-angle-left"></i>
+                                <FaAngleLeft size={20} />
                                 </a>
                             </li>
                             <li className={`${classPaginaLink} ${paginaAtual == 1 ? classAtivo : classPadrao}`}>
@@ -68,17 +70,19 @@ export default function Paginacao({ paginacao }) {
                             }
                             {(totalDePaginas > 1) &&
                                 <li className={`${classPaginaLink} ${paginaAtual == totalDePaginas ? classAtivo : classPadrao}`}>
-                                    <a className={linkItem} onclick="paginacao(@totalDePaginas)">{totalDePaginas}</a>
+                                    <a className={linkItem} href={`/pokemons/${totalDePaginas}`}>{totalDePaginas}</a>
                                 </li>
                             }
                             <li className={`${classPaginaLink} ${paginaAtual == totalDePaginas ? classDisable : classPadrao}`}>
                                 <a className={linkItem} href={`/pokemons/${+paginaAtual + 1}`} aria-label="Proxima">
                                     <i class="fa-solid fa-angle-right"></i>
+                                    <FaAngleRight size={20} />
                                 </a>
                             </li>
                             <li className={`${classPaginaLink} ${paginaAtual == totalDePaginas ? classDisable : classPadrao}`}>
                                 <a className={linkItem} href={`/pokemons/${totalDePaginas}`} aria-label="Ultima">
                                     <i class="fa-solid fa-angles-right"></i>
+                                    <FaAnglesRight size={20} />
                                 </a>
                             </li>
                         </ul>
