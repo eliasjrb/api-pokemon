@@ -18,7 +18,7 @@ function addItem (item){
 }
 
 export default async function Pokemon({params}) {
-    let limit = 6
+    let limit = 12
     let offset = (params.page - 1) * limit
     const data = await getData(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     paginacao.paginaAtual = params.page
@@ -28,7 +28,7 @@ export default async function Pokemon({params}) {
    
     return (
         <>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-3 w-4/5 mx-auto'>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5 mx-auto'>
                 {data.results.map(async x => {
                     let pokemon = await getData(x.url);
                     addItem (pokemon)
