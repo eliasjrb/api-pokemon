@@ -1,34 +1,43 @@
-import Image from "next/image";
-import CapaPokemon from "../../public/images/capa-pokemon.jpg"
-import PokeBall from "../../public/images/poke-ball.png"
-import Link from "next/link";
+import CardPokemon from '@/components/CardPokemon';
+import Paginacao from '@/components/Paginacao';
 
-export default function Home() {
-  return (
-    <>
-      <section className="py-10 my-10 h-[78vh]" id="home">
-        <div className="max-w-5xl mx-auto h-full flex flex-col items-center justify-center">
-          <h1 className="text-gray-200 text-2xl md:text-3xl mb-2">Trabalhando com o consumo de APIs e paginação</h1>
-          <p className="font-serif text-gray-100 text-xl line typing">Clique na PokeBall e conheça os Pokemons</p>
-          <Link href="/pokemons/1">
-            <Image
-              src={PokeBall}
-              className="rounded-lg"
-              alt="pokemon logo"
-              quality={100}
-              width={60}
-              height={60}
-            />
-          </Link>
-          <Image
-            src={CapaPokemon}
-            className="rounded-lg"
-            alt="pokemon logo"
-            quality={100}
-            sizes="(max-width: 768px) 100vw, (maxwidth: 1200px) 44vw"
-          />
-        </div>
-      </section>
-    </>
-  )
+async function getData(url:string) {
+    const response = await fetch(url)
+    return response.json()
+}
+
+const paginacao = {
+    paginaAtual: 2,
+    totalDeItens: 150,
+    qtdPorPagina: 10,
+}
+
+export default async function Home({params}:any) {
+  let limit = 12
+  let offset = (params.page - 1) * limit
+    const data = await getData(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+
+    paginacao.totalDeItens = data.count
+    paginacao.qtdPorPagina = limit
+
+   
+    return (
+        <>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 w-4/5 mx-auto'>
+                {data.results.map(async (x:any) => {
+                    let pokemon = await getData(x.url);
+                    
+                    return (
+                        <>
+                            <CardPokemon key={pokemon.id - 1}  pokemon={pokemon} />
+                        </>
+                    )
+                })}
+            </div>
+            
+            <div className='w-full justify-center py-5'>
+                <Paginacao paginacao={paginacao}  />
+            </div>
+        </>
+    )
 }

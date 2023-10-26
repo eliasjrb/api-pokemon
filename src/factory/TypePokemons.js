@@ -1,0 +1,20 @@
+export const typePokemons = {
+    "bug": "Inseto",
+    "dark": "Sombrio",
+    "dragon": "Dragão",
+    "electric": "Elétrico",
+    "fairy": "Fada",
+    "fighting": "Lutador",
+    "fire": "Fogo",
+    "flying": "Voador",
+    "ghost": "Fantasma",
+    "grass": "Planta",
+    "ground": "Terrestre",
+    "ice": "Gelo",
+    "normal": "Normal",
+    "poison": "Venenoso",
+    "psychic": "Psíquico",
+    "rock": "Pedra",
+    "steel": "Aço",
+    "water": "Água"
+};

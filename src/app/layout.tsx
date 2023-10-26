@@ -2,8 +2,6 @@ import Header from '@/components/Header';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { FaSun, FaMoon } from "react-icons/fa6";
-
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +16,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-br" className='dark'>
-      <body className={`${inter.className} bg-white text-gray-600 space-y-3 dark:bg-slate-800 dark:text-gray-100`}>
-        <Header />
+    <html lang="pt-br">
+      <body className={`${inter.className} bg-slate-200 text-gray-600 pt-10 space-y-3 dark:bg-slate-800 dark:text-gray-100`}>
+        {/* <Header /> */}
+        
         {children}
       </body>
     </html>
