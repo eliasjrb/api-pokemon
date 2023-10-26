@@ -59,7 +59,7 @@ export default function CardPokemon({ pokemon }) {
             <div className="w-full h-full">
                 <div className="flex gap-2 justify-center items-center text-gray-800">
                 { pokemon["types"].map( x => {
-                    return (<span className={`${pokemonColor[x.type.name]} text-sm p-2 rounded-md`}>{pokemonk[x.type.name]}</span>)
+                    return (<span key={x.type.name+x.type.url} className={`${pokemonColor[x.type.name]} text-sm p-2 rounded-md`}>{pokemonk[x.type.name]}</span>)
                 })}
                 </div>
                 <h1 className="text-2xl text-gray-900 font-semibold">{pokemon.name.toUpperCase()}</h1>
