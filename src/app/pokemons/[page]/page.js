@@ -18,7 +18,7 @@ function addItem (item){
 }
 
 export default async function Pokemon({params}) {
-    let limit = 12
+    let limit = 8
     let offset = (params.page - 1) * limit
     const data = await getData(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     paginacao.paginaAtual = params.page

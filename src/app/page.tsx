@@ -7,13 +7,13 @@ async function getData(url:string) {
 }
 
 const paginacao = {
-    paginaAtual: 2,
+    paginaAtual: 1,
     totalDeItens: 150,
     qtdPorPagina: 10,
 }
 
 export default async function Home({params}:any) {
-  let limit = 12
+  let limit = 8
   let offset = (params.page - 1) * limit
     const data = await getData(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
 
